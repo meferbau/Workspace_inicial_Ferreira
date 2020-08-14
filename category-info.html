@@ -26,6 +26,25 @@
 </head>
 
 <body>
+  <script type="text/javascript">
+
+    function login(){
+      var contG = sessionStorage.getItem("VariableContador");
+      if (contG == null || contG == 0){
+        window.location.href="login.html";
+        console.log(contG);
+        contG = 1;
+        sessionStorage.setItem("VariableContador", contG);
+      }
+    }
+    login();
+
+    function cerrarSesion(){
+      sessionStorage.setItem("VariableContador", 0);
+      login();
+    }
+
+  </script>
   <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
       <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
@@ -33,7 +52,7 @@
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
-      
+
       <button class="botonCerrar" type="button" name="button" onclick="cerrarSesion();">Cerrar sesión</button>
 
     </div>
