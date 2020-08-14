@@ -1,0 +1,4 @@
+Este es un archivo de texto subido al repositorio de github mediante la consola git.
+
+Hecho por María Eugenia Ferreira
+
