@@ -11,6 +11,16 @@
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
+    <style media="screen">
+      .botonCerrar{
+        background-color: #D61C6C;
+        border: none;
+        border-radius: 12px;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+      }
+    </style>
   </head>
   <body>
     <nav class="site-header sticky-top py-1 bg-dark">
@@ -20,6 +30,9 @@
         <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
         <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
         <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+
+        <button class="botonCerrar" type="button" name="button" onclick="cerrarSesion();">Cerrar sesión</button>
+        
       </div>
     </nav>
     <main role="main" class="pb-5">

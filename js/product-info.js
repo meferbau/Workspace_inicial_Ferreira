@@ -4,8 +4,8 @@ function showImagesGallery(array){
 
     let htmlContentToAppend = "";
 
-    // for(let i = 0; i < array.length; i++){
-    //     let imageSrc = array[i];
+     for(let i = 0; i < array.length; i++){
+         let imageSrc = array[i];
 
         htmlContentToAppend += `
         <div class="col-lg-3 col-md-4 col-6">
@@ -16,15 +16,15 @@ function showImagesGallery(array){
         `
 
         document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
-    // }
+     }
 }
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
-const LIST_URL = "https://japdevdep.github.io/ecommerce-api/product/all.json";
+//const LIST_URL = "https://japdevdep.github.io/ecommerce-api/product/all.json";
 document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(LIST_URL).then(function(resultObj){
+    getJSONData(PRODUCT_INFO_URL).then(function(resultObj){
         if (resultObj.status === "ok")
         {
             category = resultObj.data;
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function(e){
             productCriteriaHTML.innerHTML = category.productCriteria;
 
             //Muestro las imagenes en forma de galería
-            showImagesGallery(category.imgSrc);
+            showImagesGallery(category.images);
         }
     });
 });

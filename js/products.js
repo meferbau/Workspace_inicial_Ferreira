@@ -82,9 +82,11 @@ function sortAndShowCategories(sortCriteria, categoriesArray){
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
-const LIST_URL = "https://japdevdep.github.io/ecommerce-api/product/all.json";
+
+// const LIST_URL = "https://japdevdep.github.io/ecommerce-api/product/all.json";
+
 document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(LIST_URL).then(function(resultObj){
+    getJSONData(PRODUCTS_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
             sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
         }

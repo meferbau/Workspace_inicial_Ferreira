@@ -13,6 +13,16 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <style media="screen">
+    .botonCerrar{
+      background-color: #D61C6C;
+      border: none;
+      border-radius: 12px;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+    }
+  </style>
 </head>
 
 <body>
@@ -23,6 +33,9 @@
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+
+      <button class="botonCerrar" type="button" name="button" onclick="cerrarSesion();">Cerrar sesión</button>
+      
     </div>
   </nav>
   <main role="main">
@@ -30,8 +43,8 @@
       <div class="text-center p-4">
         <h2>Descripción del producto</h2>
         <p class="lead">Encontrarás aquí toda la información del producto seleccionado.</p>
-        <p class="small alert-warning py-3"><strong>Nota: </strong>por simplicidad, cualquiera sea la categoría
-          seleccionada previamente, siempre se visualizará la presente: <strong>Autos</strong>.</p>
+        <!-- <p class="small alert-warning py-3"><strong>Nota: </strong>por simplicidad, cualquiera sea la categoría
+          seleccionada previamente, siempre se visualizará la presente: <strong>Autos</strong>.</p> -->
       </div>
       <h3 id="categoryName"></h3>
       <hr class="my-3">
@@ -41,7 +54,7 @@
           <p id="categoryDescription"></p>
         </dd>
 
-        <dt>Cantidad de productos en la categoría</dt>
+        <dt>Cantidad de productos disponibles</dt>
         <dd>
           <p id="productCount"></p>
         </dd>
