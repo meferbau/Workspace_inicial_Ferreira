@@ -13,16 +13,6 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  <style media="screen">
-    .botonCerrar{
-      background-color: #D61C6C;
-      border: none;
-      border-radius: 12px;
-      color: white;
-      text-align: center;
-      text-decoration: none;
-    }
-  </style>
 </head>
 
 <body>
@@ -44,6 +34,10 @@
       login();
     }
 
+    window.onload = function() {
+      document.getElementById('welcome').innerText = "Hola, " + sessionStorage.getItem('userName');
+    };
+
   </script>
   <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
@@ -53,7 +47,14 @@
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
 
-      <button class="botonCerrar" type="button" name="button" onclick="cerrarSesion();">Cerrar sesión</button>
+      <div class="dropdown">
+        <button id="welcome" class="dropbtn"></button>
+        <div class="dropdown-content">
+          <a href="cart.html">Mi carrito</a>
+          <a href="my-profile.html">Mi perfil</a>
+          <a onclick="cerrarSesion();" href="#">Cerrar sesión</a>
+        </div>
+      </div>
 
     </div>
   </nav>
