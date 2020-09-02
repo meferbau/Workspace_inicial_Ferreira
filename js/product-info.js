@@ -10,7 +10,7 @@ function showImagesGallery(array){
         htmlContentToAppend += `
         <div class="col-lg-3 col-md-4 col-6">
             <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="` + category.imgSrc + `" alt="">
+                <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
             </div>
         </div>
         `
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function(e){
             categoryNameHTML.innerHTML = category.name;
             categoryDescriptionHTML.innerHTML = category.description;
             productCountHTML.innerHTML = category.soldCount;
-            productCriteriaHTML.innerHTML = category.productCriteria;
+            productCriteriaHTML.innerHTML = category.relatedProducts;
 
             //Muestro las imagenes en forma de galería
             showImagesGallery(category.images);
