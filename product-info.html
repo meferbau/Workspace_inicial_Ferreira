@@ -74,14 +74,28 @@
           <p id="categoryDescription"></p>
         </dd>
 
-        <dt>Cantidad de productos disponibles</dt>
+        <dt>Cantidad de productos vendidos:</dt>
         <dd>
           <p id="productCount"></p>
         </dd>
 
-        <dt>Productos similares:</dt>
+        <dt>Productos relacionados:</dt>
         <dd>
-          <p id="productSimilar"></p>
+          <!-- <p id="productSimilar"></p> -->
+          <table>
+            <tr>
+              <td>
+                <div id="primerProdRel" class="card" style="width: 18rem;">
+                </div>
+              </td>
+              <td>
+                <div id="segundoProdRel" class="card" style="width: 18rem;">
+                </div>
+              </td>
+            </tr>
+          </table>
+
+
         </dd>
 
         <dt>Imágenes ilustrativas</dt>
@@ -89,6 +103,13 @@
           <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
           </div>
         </dd>
+        <dt>Comentarios</dt>
+        <dd>
+          <div class="row text-center text-lg-left pt-2" style="display: grid;" id="comentarios">
+          </div>
+
+        </dd>
+
       </dl>
       <a type="button" class="btn btn-light btn-lg btn-block" href="products.html">Volver a productos</a>
     </div>
