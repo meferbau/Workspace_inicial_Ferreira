@@ -86,14 +86,34 @@ document.addEventListener("DOMContentLoaded", function(e){
                     {
                       dataComentarios = contenido.data;
                       let contenidoComentarios = "";
+                      let cantEstrellas = 0;
+                      let contenidoEstrellas = "";
                       for (i = 0; i<dataComentarios.length; i++){
+
+                        cantEstrellas = dataComentarios[i].score;
+                        for (a = 0; a<cantEstrellas; a++){
+                          contenidoEstrellas += `
+                          <span class="fa fa-star checked"></span>
+                          `
+                        }
+                        if (cantEstrellas<5){
+                          let totalEstrellasVacias = 5-cantEstrellas;
+                          for (b = 0; b<totalEstrellasVacias; b++){
+                            contenidoEstrellas += `
+                            <span class="fa fa-star"></span>
+                            `
+                          }
+                        }
+                        cantEstrellas = 0;
+
                         contenidoComentarios += `
                         <div>
                           <p><strong>`+ dataComentarios[i].user +`: </strong>` + dataComentarios[i].description +`</p>
-                          <p>`+ dataComentarios[i].dateTime +`</p>
+                          <p>`+ dataComentarios[i].dateTime + contenidoEstrellas +`</p>
                           <hr>
                         </div>
                         `
+                        contenidoEstrellas = "";
 
                       }
                       document.getElementById("comentarios").innerHTML = contenidoComentarios;
