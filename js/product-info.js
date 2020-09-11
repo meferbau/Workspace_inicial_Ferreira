@@ -1,4 +1,4 @@
-var category = {};
+var products = {};
 
 function showImagesGallery(array){
 
@@ -24,25 +24,24 @@ function showImagesGallery(array){
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
-//const LIST_URL = "https://japdevdep.github.io/ecommerce-api/product/all.json";
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(PRODUCT_INFO_URL).then(function(resultObj){
         if (resultObj.status === "ok")
         {
-            category = resultObj.data;
+            products = resultObj.data;
 
-            let categoryNameHTML  = document.getElementById("categoryName");
-            let categoryDescriptionHTML = document.getElementById("categoryDescription");
+            let productsNameHTML  = document.getElementById("productsName");
+            let productsDescriptionHTML = document.getElementById("productsDescription");
             let productCountHTML = document.getElementById("productCount");
             let productSimilarHTML = document.getElementById("productSimilar");
 
-            categoryNameHTML.innerHTML = category.name;
-            categoryDescriptionHTML.innerHTML = category.description;
-            productCountHTML.innerHTML = category.soldCount;
+            productsNameHTML.innerHTML = products.name;
+            productsDescriptionHTML.innerHTML = products.description;
+            productCountHTML.innerHTML = products.soldCount;
 
 
             //Muestro las imagenes en forma de galería
-            showImagesGallery(category.images);
+            showImagesGallery(products.images);
           }
 
 
@@ -51,8 +50,8 @@ document.addEventListener("DOMContentLoaded", function(e){
                 if (resultado.status === "ok")
                 {
                   productosTodos = resultado.data;
-                  var primerProductoRelacionado = productosTodos[category.relatedProducts[0]];
-                  var segundoProductoRelacionado = productosTodos[category.relatedProducts[1]];
+                  var primerProductoRelacionado = productosTodos[products.relatedProducts[0]];
+                  var segundoProductoRelacionado = productosTodos[products.relatedProducts[1]];
 
                   //Obtengo y muestro info del primer elemento en el html
                   let contHTMLPrimProdRel = "";
@@ -84,18 +83,25 @@ document.addEventListener("DOMContentLoaded", function(e){
                 getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(contenido){
                     if (contenido.status === "ok")
                     {
+                      // Se obtienen todos los datos del JSON
                       dataComentarios = contenido.data;
+
                       let contenidoComentarios = "";
                       let cantEstrellas = 0;
                       let contenidoEstrellas = "";
+
+                      //Este for crea los comentarios
                       for (i = 0; i<dataComentarios.length; i++){
 
+                        //Se obtienen las estrellas amarillas adecuadas al score obtenido
                         cantEstrellas = dataComentarios[i].score;
                         for (a = 0; a<cantEstrellas; a++){
                           contenidoEstrellas += `
                           <span class="fa fa-star checked"></span>
                           `
                         }
+                        //Dependiendo de cuántas estrellas amarillas tengamos, se agregan
+                        //las estrellas negras correspondientes
                         if (cantEstrellas<5){
                           let totalEstrellasVacias = 5-cantEstrellas;
                           for (b = 0; b<totalEstrellasVacias; b++){
@@ -106,6 +112,7 @@ document.addEventListener("DOMContentLoaded", function(e){
                         }
                         cantEstrellas = 0;
 
+                        //Se agrega a una variable la información del comentario
                         contenidoComentarios += `
                         <div>
                           <p><strong>`+ dataComentarios[i].user +`: </strong>` + dataComentarios[i].description +`</p>
@@ -116,9 +123,42 @@ document.addEventListener("DOMContentLoaded", function(e){
                         contenidoEstrellas = "";
 
                       }
+                      //Se muestra en el html nuestra variable que contiene los comentarios
                       document.getElementById("comentarios").innerHTML = contenidoComentarios;
 
                     }
             });
         });
+});
+document.getElementById("btnEnviarComentario").addEventListener("click", function(){
+
+  var puntuacionDada = document.getElementById("puntuacionSelect").value;
+  var comentarioHecho = document.getElementById("comentarioAgregado").value;
+  var fechaHora = new Date();
+  var usuario = sessionStorage.getItem("soloNombreUsuario");
+
+  let fechaFormateada = fechaHora.getFullYear() + "-" + (fechaHora.getMonth() + 1) + "-"
+  + fechaHora.getDate() + " " + fechaHora.getHours() + ":" + fechaHora.getMinutes() + ":" + fechaHora.getSeconds();
+
+  var puntuacionEstrellas = '';
+  for (i=1; i<=5; i++){
+    if (i<=puntuacionDada){
+      puntuacionEstrellas += `
+      <span class="fa fa-star checked"></span>
+      `
+    }else {
+      puntuacionEstrellas += `
+      <span class="fa fa-star"></span>
+      `
+    }
+  }
+  var nuevosComentarios = ""
+  nuevosComentarios += `
+  <div>
+    <p><strong>`+ usuario +`: </strong>` + comentarioHecho +`</p>
+    <p>`+ fechaFormateada + puntuacionEstrellas +`</p>
+    <hr>
+  </div>
+  `
+  document.getElementById("comentarios").innerHTML += nuevosComentarios
 });

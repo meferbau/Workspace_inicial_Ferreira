@@ -40,6 +40,9 @@
   function callme(){
       var name = document.getElementById('inputEmail').value;
       sessionStorage.setItem('userName', name);
+      var arrNombre = sessionStorage.getItem('userName').split("@");
+      var soloNombre = arrNombre[0];
+      sessionStorage.setItem('soloNombreUsuario',soloNombre);
   }
 </script>
 
