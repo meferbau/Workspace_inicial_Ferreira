@@ -18,6 +18,9 @@
     .checked {
       color: orange;
     }
+    .comentarioHover:hover{
+      background-color: #EA659E;
+    }
 </style>
 </head>
 
@@ -51,7 +54,6 @@
       <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
 
       <div class="dropdown">
         <button id="welcome" class="dropbtn"></button>
@@ -64,6 +66,7 @@
 
     </div>
   </nav>
+
   <main role="main">
     <div class="container mt-5">
       <div class="text-center p-4">
@@ -75,69 +78,101 @@
       <h3 id="productsName"></h3>
       <hr class="my-3">
       <dl>
-        <dt>Descripción</dt>
-        <dd>
-          <p id="productsDescription"></p>
-        </dd>
+        <div class="row">
+          <div class="col">
+            <dt>Imágenes ilustrativas</dt>
+            <dd>
 
-        <dt>Cantidad de productos vendidos:</dt>
-        <dd>
-          <p id="productCount"></p>
-        </dd>
+              <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div id="carouselImagenes" class="carousel-inner">
 
-        <dt>Productos relacionados:</dt>
-        <dd>
-          <!-- <p id="productSimilar"></p> -->
-          <table>
-            <tr>
-              <td>
-                <div id="primerProdRel" class="card" style="width: 18rem;">
                 </div>
-              </td>
-              <td>
-                <div id="segundoProdRel" class="card" style="width: 18rem;">
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Anterior</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Siguiente</span>
+                </a>
+              </div>
+            </dd>
+          </div>
+          <div class="col">
+            <dt>Descripción</dt>
+            <dd>
+              <p id="productsDescription" style="text-align:justify;"></p>
+            </dd>
+            <dt>Cantidad de productos vendidos:</dt>
+            <dd>
+              <p id="productCount"></p>
+            </dd>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+          </div>
+          <div class="col-10">
+
+            <dt>Comentarios</dt>
+            <dd>
+              <div class="row text-center text-lg-left pt-2" style="display: grid;" id="comentarios">
+
+              </div>
+
+            </dd>
+            <dd>
+              <form>
+                <div class="form-group">
+                  <label for="puntuacionSelect">Puntuación:</label>
+                  <select class="form-control col-1" id="puntuacionSelect">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
                 </div>
-              </td>
-            </tr>
-          </table>
+                <div class="form-group">
+                  <label for="comentarioAgregado">Comentario:</label>
+                  <textarea class="form-control col-4" id="comentarioAgregado" placeholder="Escriba su comentario aquí" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                  <button type="button" class="btn btn-primary" id="btnEnviarComentario">Comentar</button>
+                </div>
+              </form>
 
-
-        </dd>
-
-        <dt>Imágenes ilustrativas</dt>
-        <dd>
-          <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
-          </div>
-        </dd>
-        <dt>Comentarios</dt>
-        <dd>
-          <div class="row text-center text-lg-left pt-2" style="display: grid;" id="comentarios">
+            </dd>
 
           </div>
+          <div class="col">
+          </div>
 
-        </dd>
-        <dd>
-          <form>
-            <div class="form-group">
-              <label for="puntuacionSelect">Puntuación:</label>
-              <select class="form-control col-1" id="puntuacionSelect">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="comentarioAgregado">Comentario:</label>
-              <textarea class="form-control col-4" id="comentarioAgregado" placeholder="Escriba su comentario aquí" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-              <button type="button" class="btn btn-primary" id="btnEnviarComentario">Comentar</button>
-            </div>
-          </form>
+        </div>
+        <div class="d-flex justify-content-center">
+          <dt>Productos relacionados:</dt>
+        </div>
 
-        </dd>
+        <div class="d-flex justify-content-center">
+
+          <dd>
+            <table>
+              <tr>
+                <td>
+                  <div id="primerProdRel" class="card" style="width: 18rem;">
+                  </div>
+                </td>
+                <td>
+                  <div id="segundoProdRel" class="card" style="width: 18rem;">
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </dd>
+        </div>
+
+
+
       </dl>
       <a type="button" class="btn btn-light btn-lg btn-block" href="products.html">Volver a productos</a>
     </div>

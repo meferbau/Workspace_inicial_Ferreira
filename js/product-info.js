@@ -3,20 +3,22 @@ var products = {};
 function showImagesGallery(array){
 
     let htmlContentToAppend = "";
+    var imgActive;
 
-     for(let i = 0; i < array.length; i++){
-         let imageSrc = array[i];
-
-        htmlContentToAppend += `
-        <div class="col-lg-3 col-md-4 col-6">
-            <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
-            </div>
-        </div>
-        `
-
-        document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
+     for (let i = 0; i<array.length; i++){
+       let imagenesSrc = array[i];
+       if (i==0){
+         imgActive = "active";
+       }else{
+         imgActive = "";
+       }
+       htmlContentToAppend += `
+       <div class="carousel-item `+ imgActive  +`">
+         <img src="`+imagenesSrc+`" class="d-block w-100">
+       </div>
+       `
      }
+        document.getElementById("carouselImagenes").innerHTML = htmlContentToAppend;
 }
 
 
@@ -114,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function(e){
 
                         //Se agrega a una variable la información del comentario
                         contenidoComentarios += `
-                        <div>
+                        <div class="comentarioHover">
                           <p><strong>`+ dataComentarios[i].user +`: </strong>` + dataComentarios[i].description +`</p>
                           <p>`+ dataComentarios[i].dateTime + contenidoEstrellas +`</p>
                           <hr>
@@ -154,7 +156,7 @@ document.getElementById("btnEnviarComentario").addEventListener("click", functio
   }
   var nuevosComentarios = ""
   nuevosComentarios += `
-  <div>
+  <div class="comentarioHover">
     <p><strong>`+ usuario +`: </strong>` + comentarioHecho +`</p>
     <p>`+ fechaFormateada + puntuacionEstrellas +`</p>
     <hr>
