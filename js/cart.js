@@ -79,8 +79,29 @@ document.addEventListener("DOMContentLoaded", function(e){
             }
           });
 
-
       }
   });
 
 });
+
+function funcionEnviaForm(){
+  let tipoDeEnvio = "";
+
+  if (document.getElementById("premiumradio").value == true){
+    tipoDeEnvio = "Envío Premium";
+  } else if (document.getElementById("expressradio").value == true){
+    tipoDeEnvio = "Envío Express";
+  } else {
+    tipoDeEnvio = "Envío Standard";
+  }
+
+  htmlDatosCompra = document.getElementById("inputCantArticulos").value;
+  htmlDatosCompra += " " + document.getElementById("nombreArticulo").innerText;
+  htmlDatosCompra += `\n Tipo de envío: `+ tipoDeEnvio
+  htmlDatosCompra += `\n Total a pagar: `+ document.getElementById("costoTotal").innerText
+  htmlDatosCompra += `\n Se enviará a: `+ document.getElementById("calleEnvio").value;
+  htmlDatosCompra += " "+ document.getElementById("numeroEnvio").value;
+  htmlDatosCompra += " Esquina: "+ document.getElementById("esquinaEnvio").value;
+
+  alert("Datos de su compra: \n" + htmlDatosCompra);
+}

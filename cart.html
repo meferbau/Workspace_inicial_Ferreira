@@ -119,22 +119,22 @@
   <div class="container p-5">
     <hr class="mb-4">
     <h5 class="mb-3">Tipo de envío</h5>
-      <form class="needs-validation" id="sell-info">
+      <form method="post" onsubmit="funcionEnviaForm()" class="needs-validation" id="sell-info">
 
         <div class="d-block my-3">
 
           <div class="custom-control custom-radio">
-            <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" checked="" required="">
+            <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" checked="" required>
             <label class="custom-control-label" for="premiumradio">Premium 2 a 5 días (15%)</label>
           </div>
 
           <div class="custom-control custom-radio">
-            <input id="expressradio" name="publicationType" type="radio" class="custom-control-input" required="">
+            <input id="expressradio" name="publicationType" type="radio" class="custom-control-input" required>
             <label class="custom-control-label" for="expressradio">Express 5 a 8 días (7%)</label>
           </div>
 
           <div class="custom-control custom-radio">
-            <input id="standardradio" name="publicationType" type="radio" class="custom-control-input" required="">
+            <input id="standardradio" name="publicationType" type="radio" class="custom-control-input" required>
             <label class="custom-control-label" for="standardradio">Estándar 12 a 15 días (5%)</label>
           </div>
 
@@ -146,17 +146,17 @@
 
             <div class="col-4">
               <label for="calleEnvio">Calle</label>
-              <input id="calleEnvio" type="text" class="form-control">
+              <input id="calleEnvio" type="text" class="form-control" required>
             </div>
 
             <div class="col-3">
               <label for="numeroEnvio">Número de puerta</label>
-              <input id="numeroEnvio" type="text" class="form-control">
+              <input id="numeroEnvio" type="text" class="form-control" required>
             </div>
 
             <div class="col-4">
               <label for="esquinaEnvio">Esquina</label>
-              <input id="esquinaEnvio" type="text" class="form-control">
+              <input id="esquinaEnvio" type="text" class="form-control" required>
             </div>
 
           </div>
