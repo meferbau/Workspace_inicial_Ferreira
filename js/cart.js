@@ -86,13 +86,22 @@ document.addEventListener("DOMContentLoaded", function(e){
 
 function funcionEnviaForm(){
   let tipoDeEnvio = "";
+  let formaDePago = "";
 
   if (document.getElementById("premiumradio").value == true){
-    tipoDeEnvio = "Envío Premium";
+    tipoDeEnvio = "Premium";
   } else if (document.getElementById("expressradio").value == true){
-    tipoDeEnvio = "Envío Express";
+    tipoDeEnvio = "Express";
   } else {
-    tipoDeEnvio = "Envío Standard";
+    tipoDeEnvio = "Standard";
+  }
+
+  if (document.getElementById("metodoTarjeta").value == "on"){
+    formaDePago = "con tarjeta";
+  } else if (document.getElementById("metodoMercadoPago").value == "on"){
+    formaDePago = "a través de Mercado Pago";
+  } else {
+    formaDePago = "en efectivo";
   }
 
   htmlDatosCompra = document.getElementById("inputCantArticulos").value;
@@ -102,6 +111,7 @@ function funcionEnviaForm(){
   htmlDatosCompra += `\n Se enviará a: `+ document.getElementById("calleEnvio").value;
   htmlDatosCompra += " "+ document.getElementById("numeroEnvio").value;
   htmlDatosCompra += " Esquina: "+ document.getElementById("esquinaEnvio").value;
+  htmlDatosCompra += "\n Forma de pago: " + formaDePago;
 
   alert("Datos de su compra: \n" + htmlDatosCompra);
 }

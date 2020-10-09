@@ -27,15 +27,25 @@ document.addEventListener("DOMContentLoaded", function(e){
 
           <td id="costoArticulo`+ i +`">`+datosCarrito2.articles[i].currency +" "+ datosCarrito2.articles[i].unitCost+`</td>
 
-          <td id="cantidadArticulo`+ i +`"><input id="inputCantArticulos2" class="quantity" min="1" name="quantity"
-          value="`+ datosCarrito2.articles[i].count +`" type="number"></td>
+          <td id="cantidadArticulo`+ i +`"><input id="inputCantArticulos`+ i +`" class="quantity" min="1" name="quantity"
+          value="`+ datosCarrito2.articles[i].count +`" type="number" onchange="miFuncion(this)"></td>
 
           <td id="subtotalArticulo`+ i +`">`+"UYU "+ subTotInicial2 +`</td>
         </tr>
         `;
         document.getElementById("articlesWrapper").innerHTML += contenidoTabla;
 
+        document.addEventListener("change",function(){
+          console.log("entra");
+        });
+
       };
+
+
     };
   });
 });
+function miFuncion(t){
+  console.log("entra funcion");
+  alert(t.id);
+}
