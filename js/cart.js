@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function(e){
       {
           datosCarrito = resultObj.data;
 
-
           let nombreArtiHTML  = document.getElementById("nombreArticulo");
           let costoArtiHTML  = document.getElementById("costoArticulo");
           let cantidadArtiHTML  = document.getElementById("cantidadArticulo");
@@ -54,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function(e){
               document.getElementById("costoEnvioHTML").innerHTML = datosCarrito.articles[0].currency +" "+ Math.round(subTotSecundario*porcentajeEnvio);
               document.getElementById("costoTotal").innerHTML = Math.round(subTotSecundario*porcentajeEnvio + subTotSecundario);
             }else{
-              document.getElementById("costoEnvioHTML").innerHTML = datosCarrito.articles[0].currency +" "+ Math.round(subTotInicial*porcentajeEnvio);
+              document.getElementById(  "costoEnvioHTML").innerHTML = datosCarrito.articles[0].currency +" "+ Math.round(subTotInicial*porcentajeEnvio);
               document.getElementById("costoTotal").innerHTML = Math.round(subTotInicial*porcentajeEnvio + subTotInicial);
             }
           });
