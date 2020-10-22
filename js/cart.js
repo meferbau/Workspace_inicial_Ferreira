@@ -73,9 +73,6 @@ function actualizaTotal(){
   costoTotHTML.innerHTML = "UYU " + (sumaSubTotales + costoShipping);
 }
 
-
-
-
 document.addEventListener("DOMContentLoaded", function(e){
   getJSONData(CARRITO_URL).then(function(resultObj){
       if (resultObj.status === "ok")
