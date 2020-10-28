@@ -1,6 +1,4 @@
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
+
 var porcentajeShipping = 0.15
 var datosCart = [];
 
@@ -62,7 +60,6 @@ function actualizaTotal(){
     var texto = document.getElementById("subtotalProd"+ i).textContent;
     var arText = texto.split(" ");
     var valorTexto = arText[1];
-    alert(valorTexto)
     sumaSubTotales += parseInt(valorTexto);
   }
 
@@ -81,6 +78,21 @@ document.addEventListener("DOMContentLoaded", function(e){
           datosCart = datosCarrito.articles;
           mostrarArticulos(datosCart);
 
+          primerSubtotal = 0;
+          primerTotal = 0;
+          primerSubtotal2 = 0
+
+          for(let i = 0; i<datosCart.length; i++){
+            primerSubtotal = document.getElementById("subtotalProd"+ i).textContent.split(" ");
+            primerSubtotal2 += parseInt(primerSubtotal[1])
+
+          }
+          primerTotal = primerSubtotal2 * porcentajeShipping;
+
+          document.getElementById("subTotalHTML").innerHTML = primerSubtotal2;
+          document.getElementById("costoEnvioHTML").innerHTML = primerSubtotal2 * porcentajeShipping;
+          document.getElementById("costoTotal").innerHTML = (primerSubtotal2 * porcentajeShipping) + primerSubtotal2
+
       };
     });
 
@@ -96,4 +108,40 @@ document.addEventListener("DOMContentLoaded", function(e){
       porcentajeShipping = 0.05;
       actualizaTotal();
     });
+
 });
+
+function comprobarPago(){
+  if (document.getElementById("metodoTarjeta").checked == true){
+    document.getElementById("posibleAlerta").style.display = "contents"
+    sessionStorage.setItem("valorComprobacion",1);
+
+  } else if (document.getElementById("metodoTransferencia").checked == true){
+    document.getElementById("posibleAlerta").style.display = "contents"
+    sessionStorage.setItem("valorComprobacion",1);
+
+  } else if (document.getElementById("metodoTarjeta").checked == false && document.getElementById("transferenciaBancaria").checked == false) {
+    document.getElementById("posibleAlerta2").innerHTML += `
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      Inserte un método de pago
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    `
+  }
+}
+function cerrarCompra(){
+  console.log("entra")
+  sessionStorage.setItem("valorComprobacion", 0);
+}
+
+function comprobacion(){
+  var comprueba = sessionStorage.getItem("valorComprobacion")
+  if (comprueba == 1){
+    document.getElementById("posibleAlerta").style.display = "contents"
+  } else {
+    document.getElementById("posibleAlerta").style.display = "none"
+  }
+}
+comprobacion();

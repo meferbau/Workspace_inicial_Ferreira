@@ -27,6 +27,17 @@
         font-size: 3.5rem;
       }
     }
+    .alert-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index:999;
+      background: #fff;
+      display: none;
+      height: 100%;
+      width: 100%;
+      overflow:hidden;
+    }
   </style>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
@@ -50,12 +61,14 @@
 
     function cerrarSesion(){
       sessionStorage.setItem("VariableContador", 0);
+      sessionStorage.setItem("valorComprobacion",0);
       login();
     }
 
     window.onload = function() {
       document.getElementById('welcome').innerText = "Hola, " + sessionStorage.getItem('userName');
     };
+
 
   </script>
   <nav class="site-header sticky-top py-1 bg-dark">
@@ -81,7 +94,7 @@
     <div class="text-center p-4">
       <h2>Carrito de compras</h2>
       <p class="lead">Artículos a comprar.</p>
-      <a href="cartDesafiante.html">IR AL EJERCICIO DESAFIANTE</a>
+      <!-- <a href="cartDesafiante.html">IR AL EJERCICIO DESAFIANTE</a> -->
     </div>
   </div>
   <div class="container p-5">
@@ -106,7 +119,7 @@
   <div class="container p-5">
     <hr class="mb-4">
     <h5 class="mb-3">Tipo de envío</h5>
-      <form method="post" onsubmit="funcionEnviaForm()" class="needs-validation" id="cart-info">
+      <form method="post"  class="needs-validation" id="cart-info">
 
         <div class="d-block my-3">
 
@@ -180,6 +193,21 @@
           <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#formaPago">Seleccionar forma de pago</button>
         </div>
 
+        <div class="row" id="alertaCompra">
+          <div id="posibleAlerta" class="container alert-wrapper" script="comprobacion()">
+            <div class="alert alert-success alert-dismissible" role="alert">
+              ¡Compra realizada con éxito!
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onClick="cerrarCompra()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="posibleAlerta2" class="container" script="comprobacion()">
+
+        </div>
+
         <div class="modal fade" tabindex="-1" role="dialog" id="formaPago">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -192,24 +220,24 @@
               <div class="modal-body">
                 <div class="container">
                     <div class="row">
-                      <input form="cart-info" id="metodoTarjeta" name="tipoDePago" value="" type="radio" class="form-check-input" style="margin-left:10px;" required>
+                      <input form="cart-info" id="metodoTarjeta" name="tipoDePago" type="radio" class="form-check-input" style="margin-left:10px;" required>
                       <label class="form-check-label" for="metodoTarjeta" style="margin-left:7%; margin-right:15%;">Tarjeta</label>
                     </div>
                     <hr>
                     <div class="form-row">
                       <div class="col-md-6">
                         <label for="numeroTarjeta" style="margin-left:5%; margin-right:15%;">Número de tarjeta</label>
-                        <input form="cart-info" id="numeroTarjeta" name="pagoTarjeta" type="text" class="form-control">
+                        <input form="cart-info" id="numeroTarjeta" name="pagoTarjeta" type="number" class="form-control">
                       </div>
                       <div class="col-md-6">
                         <label  for="cvvTarjeta" style="margin-left:5%; margin-right:15%;">Cod. Seguridad</label>
-                        <input form="cart-info" id="cvvTarjeta" name="pagoTarjeta" type="text" class="form-control">
+                        <input form="cart-info" id="cvvTarjeta" name="pagoTarjeta" type="number" class="form-control">
                       </div>
                     </div>
                     <div class="form-row">
                       <div class="col-md-4">
                         <label for="vencimientoTarjeta" style="margin-left:5%; margin-right:15%;">Vencimiento (MM/YY)</label>
-                        <input form="cart-info" id="vencimientoTarjeta" name="pagoTarjeta" type="text" class="form-control">
+                        <input form="cart-info" id="vencimientoTarjeta" maxlength="5" minlength="4" name="pagoTarjeta" type="text" class="form-control">
                       </div>
                     </div>
 
@@ -240,7 +268,7 @@
 
 
         <hr class="mb-4">
-        <button form="cart-info" class="btn btn-primary btn-lg" type="submit">Comprar</button>
+        <button form="cart-info" class="btn btn-primary btn-lg" onclick="comprobarPago()">Comprar</button>
 
 
     </form>
