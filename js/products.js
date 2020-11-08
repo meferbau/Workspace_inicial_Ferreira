@@ -39,6 +39,8 @@ function sortCategories(criteria, array){
 function showCategoriesList(){
 
     let htmlContentToAppend = "";
+    let htmlPorfuera = "";
+    let htmlfinal = "";
     for(let i = 0; i < currentCategoriesArray.length; i++){
         let category = currentCategoriesArray[i];
 
@@ -51,25 +53,30 @@ function showCategoriesList(){
           ){
 
             htmlContentToAppend += `
-            <a href="product-info.html" class="list-group-item list-group-item-action">
-                <div class="row">
-                    <div class="col-3">
+            <div class="col-md-4">
+              <a href="product-info.html" class="list-group-item list-group-item-action">
+                <div class="card-body">
+
                         <img src="` + category.imgSrc + `" alt="` + category.description + `" class="img-thumbnail">
-                    </div>
-                    <div class="col">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">`+ category.name +`</h4>
-                            <small class="text-muted">` + category.soldCount + ` artículos</small>
-                        </div>
-                        <p class="mb-1">` + category.description + "<br>" + category.cost + category.currency +`</p>
-                    </div>
+                        <h4 class="mb-1">`+ category.name +`</h4>
+                        <small class="text-muted">` + category.soldCount + ` artículos</small>
+                        <p class="card-text mb-1">` + category.description + "<br>" +"<strong>" +category.cost + category.currency +`</strong></p>
                 </div>
-            </a>
+
+              </a>
+            </div>
             `
         }
-
-        document.getElementById("productos").innerHTML = htmlContentToAppend;
     }
+    htmlPorfuera += `
+      <div class="row">
+
+    `
+    htmlfinal += `
+    </div>
+
+    `
+    document.getElementById("productos").innerHTML = htmlPorfuera+htmlContentToAppend+htmlfinal;
 }
 
 function sortAndShowCategories(sortCriteria, categoriesArray){

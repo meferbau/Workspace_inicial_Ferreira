@@ -43,6 +43,50 @@
       var arrNombre = sessionStorage.getItem('userName').split("@");
       var soloNombre = arrNombre[0];
       sessionStorage.setItem('soloNombreUsuario',soloNombre);
+
+      var bandera = false;
+      // si la variable en el localStorage existe, se entra en este if
+      if (localStorage.getItem("PerfilUsuario") != null){
+        arregloUsuarios = JSON.parse(localStorage.getItem("PerfilUsuario"));
+
+        //con este for, recorremos los usuarios que están guardados, buscando si el email ya esta registrado
+        for (var i in arregloUsuarios){
+          if (arregloUsuarios[i].email == name){
+            bandera = true;
+            break;
+          }
+        }
+      }
+      // si el usuario no está previamente registrado entra al if
+      if (!bandera){
+        //si la variable arregloUsuarios existe, se entra en el if
+        if (typeof arregloUsuarios != 'undefined'){
+          arregloUsuarios.push(
+            {
+              primerNombre: "",
+              segundoNombre: "",
+              primerApellido: "",
+              segundoApellido: "",
+              email: name,
+              numeroContacto: ""
+            }
+          );
+          localStorage.setItem("PerfilUsuario", JSON.stringify(arregloUsuarios));
+        } else { //si la variable arregloUsuarios no existe, se entra en el else y se crea
+          var arregloUsuarios = [];
+          arregloUsuarios.push(
+            {
+              primerNombre: "",
+              segundoNombre: "",
+              primerApellido: "",
+              segundoApellido: "",
+              email: name,
+              numeroContacto: ""
+            }
+          );
+          localStorage.setItem("PerfilUsuario", JSON.stringify(arregloUsuarios));
+        }
+      }
   }
 </script>
 
